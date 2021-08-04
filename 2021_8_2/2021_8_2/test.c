@@ -94,6 +94,164 @@
 //}
 
 
+//c语言规定：地址的比较，数组中的一个地址，可以与数组最后面的后一个空间地址进行比较，
+//而不能与数组最前面的前一个空间地址进行比较。
+//#include<stdio.h>
+//#define PE 5
+//int main()
+//{
+//	float arr[PE] = { 0 };
+//	float* p = NULL;
+//	for (p = &arr[0]; p < &arr[PE]; )  // 这段代码比较了数组后面的一个float类型的空间地址，允许的方法
+//	{
+//		*p++ = 0;
+//	}
+//	for (p = &arr[PE - 1]; p >= &arr[0]; p--)  //这段代码比较了数组前一个float类型的空间地址，错误的方法。
+//	{
+//		*p = 0;
+//	}
+//	return 0;
+//
+
+
+//数组名在一些情况下代表的含义
+//#include<stdio.h>
+//int main()
+//{
+//	int arr[10] = { 0 };
+//	printf("%p\n", arr);          //数组首元素地址
+//	printf("%p\n", arr + 1);      //跳过一个元素
+//	printf("%p\n", &arr[0]);      //数组首元素地址
+//	printf("%p\n", &arr[0] + 1);  //跳过一个元素
+//
+//	printf("%p\n", &arr);         //整个数组的地址
+//	printf("%p\n", &arr + 1);     //跳过一整个数组
+//
+//	return 0;
+//}
+
+
+//多级指针
+//#include<stdio.h>
+//int main()
+//{
+//	int a = 10;
+//	int* p = &a;
+//	int** pp = &p;
+//	printf("%d\n", *p);   //一级指针，用来存放变量的地址
+//	printf("%d\n", **pp); //二级指针，用来存放一级指针的地址
+//	return 0;
+//}
+
+
+//指针数组
+//#include<stdio.h>
+//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	int c = 30;
+//	int i = 0;
+//	int* arr[3] = { &a, &b, &c };   //指针数组-它首先是个数组，数组里每个元素的类型是指针（地址）
+//	printf("%d %d %d\n", *arr[0], *arr[1], *arr[2]);
+//	for (i = 0; i < 3; i++)
+//	{
+//		printf("%d ", *(*(arr + i))); //arr+i找到每个元素的位置，*(arr+i)找到每个元素的内容，*(*(arr+i))对每个元素的内容再解引用，找到原来的a，b，c
+//	}
+//	return 0;
+//}
+
+//结构体——用来描述复杂对象
+//#include<stdio.h>
+//struct student      //用户自定义的结构体类型
+//{
+//	char name[10];  //结构体成员
+//	int age;
+//	char ID[10];
+//}stu1 = { "chen", 13, "13586" };        //创建的结构体变量--全局变量（放在静态区）
+//void my_printf(struct student* m)    //结构体传参
+//{
+//	printf("%s %d %s\n", m->name, m->age, m->ID);        //指针->成员
+//	printf("%s %d %s\n", (*m).name, (*m).age, (*m).ID);  //(*指针).成员
+//}
+//int main()
+//{
+//	struct student stu2 = { "wang", 10, "13346" }; //局部变量（放在栈区）
+//	struct student* p1 = &stu1;                    //结构体指针
+//	struct student* p2 = &stu2;                    //结构体指针
+//	//结构体成员访问操作符
+//	printf("%s %d %s\n", stu2.name, stu2.age, stu2.ID);  //变量名.成员
+//	printf("%s %d %s\n", p2->name, p2->age, p2->ID);     //指针->成员
+//	printf("%s %d %s\n", (*p2).name, (*p2).age, (*p2).ID);//(*指针).成员
+//
+//	printf("%s %d %s\n", stu1.name, stu1.age, stu1.ID);
+//	printf("%s %d %s\n", p1->name, p1->age, p1->ID);
+//	printf("%s %d %s\n", (*p1).name, (*p1).age, (*p1).ID);
+//	my_printf(&stu2);   //注意：结构体在传参时最好传地址，这样可以不需要在栈区上额外开辟空间，用来拷贝一份结构体变量
+//
+//	return 0;
+//}
+
+
+//结构体-类型重定义（typedef）
+//#include<stdio.h>
+//typedef struct book
+//{
+//	char name[30];
+//	float price;
+//	int ID[10];
+//}S;                         //这时的 S 不是结构体变量，而是重定义的结构体类型名
+//int main()
+//{
+//	S b = { "C语言程序设计", 35.5, { 4, 4, 3, 5, 6} };
+//	S* b1 = &b;
+//	printf("%s %f %d%d%d%d%d\n", b.name, b.price, b.ID[0], b.ID[1], b.ID[2], b.ID[3], b.ID[4]);   // .操作符
+//	printf("%s %f %d%d%d%d%d\n", b1->name, b1->price, b1->ID[0], b1->ID[1], b1->ID[2], b1->ID[3], b1->ID[4]);  // ->操作符
+//	return 0;
+//}
+
+
+//结构体变量的相互嵌套
+//#include<stdio.h>
+//struct S
+//{
+//	char a1[10];
+//	int a2;
+//	int a3[1];
+//};
+//struct H
+//{
+//	char b1[10];
+//	int b2;
+//	struct S b3;   //结构体 H 类型中又有结构体 S 类型。
+//};
+//int main()
+//{
+//	struct H x = { "abc", 10, {"def", 20, {1}} };
+//	printf("%s %d %s %d %d\n", x.b1, x.b2, x.b3.a1, x.b3.a2, x.b3.a3[0]); //访问结构体中的结构体—名字.名字.成员
+//	return 0;
+//}
+
+
+//函数实现加法操作
+//#include<stdio.h>
+//int Add(const int x, const int y) //加const修饰，防止x和y的值被改变
+//{
+//	return x + y;
+//}
+//int main()
+//{
+//	int a = 0;
+//	int b = 0;
+//	int sum = 0;
+//	printf("请输入两个数:");
+//	scanf("%d %d", &a, &b);
+//	sum = Add(a, b);
+//	printf("sum = %d\n", sum);
+//	return 0;
+//}
+
+//下面的代码输出什么？
 //#include<stdio.h>
 //struct stu
 //{
