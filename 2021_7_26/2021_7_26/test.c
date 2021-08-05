@@ -42,24 +42,32 @@
 
 
 //写一个函数求两个整数的较大值
+//#include<stdio.h>
+//int my_max(int x, int y)
+//{
+//	if (x > y)
+//		return x;
+//	else
+//		return y;
+//}
+//
+//int main()
+//{
+//	int a = 0;
+//	int b = 0;
+//	int Max = 0;
+//	scanf("%d %d", &a, &b);
+//	Max = my_max(a, b);
+//	printf("Max = %d\n", Max);
+//	return 0;
+//}
+
+
+
+
 #include<stdio.h>
-
-int my_max(int x, int y)
-{
-	if (x > y)
-		return x;
-	else
-		return y;
-}
-
 int main()
 {
-	int a = 0;
-	int b = 0;
-	int Max = 0;
-	scanf("%d %d", &a, &b);
-	Max = my_max(a, b);
-	printf("Max = %d\n", Max);
+
 	return 0;
 }
-
