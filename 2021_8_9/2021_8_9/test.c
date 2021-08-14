@@ -99,11 +99,19 @@
 //}
 
 
-#include <stdio.h>
+//#include <stdio.h>
+//int main()
+//{
+//    char a = 128;
+//    printf("%u\n", a);
+//    return 0;
+//}
+
+
+
+#include<stdio.h>
 int main()
 {
-    char a = 128;
-    printf("%u\n", a);
-    return 0;
+	printf("hello world!\n");
+	return 0;
 }
-
