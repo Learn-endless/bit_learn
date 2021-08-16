@@ -180,16 +180,85 @@
 
 
 //浮点数的存储
+//#include<stdio.h>
+//int main()
+//{
+//	int n = 9;
+//	float* pFloat = (float*)&n;
+//	printf("n的值为：%d\n", n);
+//	printf("*pFloat的值为：%f\n", *pFloat);
+//	*pFloat = 9.0;
+//	printf("num的值为：%d\n", n);
+//	printf("*pFloat的值为：%f\n", *pFloat);
+//
+//	return 0;
+//}
+
+
+//A选手说：B第二，我第三；
+//
+//B选手说：我第二，E第四；
+//
+//C选手说：我第一，D第二；
+//
+//D选手说：C最后，我第三；
+//
+//E选手说：我第四，A第一；
+//#include<stdio.h>
+//int my_function(int* p)
+//{
+//	int n[7] = { 0 };  //arr数组中最高可存放到6，故 n 需要 7 个元素空间//初始化为 0 ，表示没有标记
+//	int i = 0;
+//	for (i = 0; i < 5; i++)
+//	{
+//		if (1 == n[p[i]]) //表示有重复，返回0.
+//		{
+//			return 0;     
+//		}
+//		n[p[i]] = 1; //没有重复，标记为 1
+//	}
+//	return 1; //没有一次重复，返回 1 
+//}                      
+//int main()
+//{
+//	int i = 0;
+//	int arr[5] = { 0 }; //定义一个数组，存放 a b c d
+//	for (arr[0] = 1; arr[0] <= 5; arr[0]++)   //循环当a为 1 2 3 4 5名时
+//	{
+//		for (arr[1] = 1; arr[1] <= 5; arr[1]++)   //循环当b为 1 2 3 4 5名时
+//		{
+//			for (arr[2] = 1; arr[2] <= 5; arr[2]++)   //循环当c为 1 2 3 4 5名时
+//			{
+//				for (arr[3] = 1; arr[3] <= 5; arr[3]++)   //循环当d为 1 2 3 4 5名时
+//				{
+//					for (arr[4] = 1; arr[4] <= 5; arr[4]++)   //循环当e为 1 2 3 4 5名时
+//					{
+//						if ((arr[1] == 2) + (arr[0] == 3) == 1 &&  //判断每个人说的话是不是只对了一半
+//							(arr[1] == 2) + (arr[4] == 4) == 1 &&
+//							(arr[2] == 1) + (arr[3] == 2) == 1 &&
+//							(arr[2] == 5) + (arr[3] == 3) == 1 &&
+//							(arr[4] == 4) + (arr[0] == 1) == 1 &&
+//							my_function(arr))  // 查重函数，重复返回0，不重复返回1
+//						{
+//							for (i = 0; i < 5; i++)    //循环打印满足要求的那一组数
+//							{
+//								printf("%d ", arr[i]);
+//							}
+//							printf("\n");     //打印完之后换行
+//						}
+//					}
+//				}
+//			}
+//		}
+//	}
+//	return 0;
+//}
+
+
 #include<stdio.h>
 int main()
 {
-	int n = 9;
-	float* pFloat = (float*)&n;
-	printf("n的值为：%d\n", n);
-	printf("*pFloat的值为：%f\n", *pFloat);
-	*pFloat = 9.0;
-	printf("num的值为：%d\n", n);
-	printf("*pFloat的值为：%f\n", *pFloat);
 
 	return 0;
 }
+
