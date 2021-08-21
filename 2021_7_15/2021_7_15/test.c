@@ -72,8 +72,22 @@
 
 
 //创建数组，及数组有关操作符
+//#include<stdio.h>
+//void test()   //void 表示没有返回值
+//{
+//	printf("hello world!\n");
+//}
+//int main()
+//{
+//	int arr[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };  //创建一个整形数组
+//	printf("%d\n", arr[0]);  // [] : 下标引用操作符
+//	test();                  // () : 函数调佣操作符 
+//	return 0;
+//}
+
+
 #include<stdio.h>
-void test()   //void 表示没有返回值
+void test(void)   //void 表示没有形式参数
 {
 	printf("hello world!\n");
 }
