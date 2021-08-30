@@ -51,17 +51,25 @@
 
 
 //转义字符 - 转变原来的意思
+//#include<stdio.h>
+//int main()
+//{
+//	printf("%c\n", '\'');
+//	printf("%s\n", "\"");
+//	printf("%c\n", '\a');    //\a:电脑蜂鸣器报警
+//	printf("%d\n", '\162');  //八进制
+//	printf("%c\n", '\162');  //八进制对应的ASCII的字符
+//	printf("%d\n", '\x15');  //十六进制
+//	printf("%c\n", '\x15');  //十六进制对应的ASCII的字符
+//	printf("%s\n", "\f\f\f\f\f");  //进纸符-[]
+//
+//	return 0;
+//}
+
+
 #include<stdio.h>
 int main()
 {
-	printf("%c\n", '\'');
-	printf("%s\n", "\"");
-	printf("%c\n", '\a');    //\a:电脑蜂鸣器报警
-	printf("%d\n", '\162');  //八进制
-	printf("%c\n", '\162');  //八进制对应的ASCII的字符
-	printf("%d\n", '\x15');  //十六进制
-	printf("%c\n", '\x15');  //十六进制对应的ASCII的字符
-	printf("%s\n", "\f\f\f\f\f");  //进纸符-[]
-
+	int arr[10] = { 1,2,3,4,5 }; //不完全初始化，其它默认为0
 	return 0;
 }
