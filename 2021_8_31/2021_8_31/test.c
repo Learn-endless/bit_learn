@@ -112,5 +112,51 @@
 //            size_t num, 
 //            size_t width, 
 //            int (__cdecl *compare )(const void *elem1, const void *elem2 ) );
+//#include<stdio.h>
+//#include<stdlib.h>
+//int cmpare(const void* e1, const void* e2)      //qsort的比较函数
+//{
+//	return *(int*)e1 - *(int*)e2;      //先强转类型然后相减
+//}
+//int main()
+//{
+//	int arr[] = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	qsort(arr, sz, sizeof(arr[0]), cmpare);
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
+//
 
-
+//qsort排结构体类型数据
+#include<stdio.h>
+#include<stdlib.h>         //qsort库函数的头文件
+#include<string.h>         //strcmp库函数的头文件
+struct stu      //创建一个结构体类型 - stu
+{
+	char name[20];        //名字
+	int age;              //年龄
+};
+int cmpare_name(const void* e1, const void* e2)       //名字比较函数
+{
+	return strcmp((*(struct stu*)e1).name, (*(struct stu*)e2).name);
+	//return strcmp(((struct stu*)e1)->name, ((struct stu*)e2)->name);
+}
+int cmpare_age(const void* e1, const void* e2)        //年龄比较函数
+{
+	return (*(struct stu*)e1).age - (*(struct stu*)e2).age;
+	//return ((struct stu*)e1)->age - ((struct stu*)e2)->age;
+}
+int main()
+{
+	struct stu arr[3] = { {"张三",15},{"李四",20},{"王五",10} };  //创建一个结构体数组
+	int ret = sizeof(arr) / sizeof(arr[0]);    //计算元素个数
+	//qsort(arr, ret, sizeof(arr[0]), cmpare_name);        //按名字来排序
+	qsort(arr, ret, sizeof(arr[0]), cmpare_age);           //按年龄来排序
+	
+	return 0;
+}
