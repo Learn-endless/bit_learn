@@ -133,30 +133,117 @@
 //
 
 //qsort排结构体类型数据
+//#include<stdio.h>
+//#include<stdlib.h>         //qsort库函数的头文件
+//#include<string.h>         //strcmp库函数的头文件
+//struct stu      //创建一个结构体类型 - stu
+//{
+//	char name[20];        //名字
+//	int age;              //年龄
+//};
+//int cmpare_name(const void* e1, const void* e2)       //名字比较函数
+//{
+//	return strcmp((*(struct stu*)e1).name, (*(struct stu*)e2).name);
+//	//return strcmp(((struct stu*)e1)->name, ((struct stu*)e2)->name);
+//}
+//int cmpare_age(const void* e1, const void* e2)        //年龄比较函数
+//{
+//	return (*(struct stu*)e1).age - (*(struct stu*)e2).age;
+//	//return ((struct stu*)e1)->age - ((struct stu*)e2)->age;
+//}
+//int main()
+//{
+//	struct stu arr[3] = { {"张三",15},{"李四",20},{"王五",10} };  //创建一个结构体数组
+//	int ret = sizeof(arr) / sizeof(arr[0]);    //计算元素个数
+//	//qsort(arr, ret, sizeof(arr[0]), cmpare_name);        //按名字来排序
+//	qsort(arr, ret, sizeof(arr[0]), cmpare_age);           //按年龄来排序
+//	
+//	return 0;
+//}
+
+
+//自定义通用版本的冒泡排序
+//#include<stdio.h>
+//#include<string.h>         //strcmp库函数的头文件
+//struct stu       //创建一个结构体类型 - stu
+//{
+//	char name[20];        //名字
+//	int age;              //年龄
+//};
+////my_sort函数的自定义结构体比较函数 (名字比较函数)
+//int cmpare_name(const void* e1, const void* e2)       
+//{
+//	return strcmp(((struct stu*)e1)->name, ((struct stu*)e2)->name);
+//} 
+////my_sort函数的自定义结构体比较函数 (年龄比较函数)
+//int cmpare_age(const void* e1, const void* e2)      
+//{
+//	return ((struct stu*)e1)->age - ((struct stu*)e2)->age;
+//}
+////my_sort函数的自定义整形比较函数
+//int cmpare_number(const void* e1, const void* e2)
+//{
+//	return *(int*)e1 - *(int*)e2;
+//}
+//void exchange(char* e1, char* e2, size_t width)  //用char类型的指针接收指向两个元素的指针
+//{
+//	size_t i = 0;
+//	for (i = 0; i < width; i++)   //一个元素的类型是多少字节，就交换多少次
+//	{                                 //采用一个字节一个字节的方式来交换
+//		char temp = *e1;
+//		*e1 = *e2;
+//		*e2 = temp;
+//		e1++;        //两个指针没循环一次，就往后位移一个char
+//		e2++;
+//	}
+//}
+////自定义通用冒泡排序函数
+//void my_sort(void* base, size_t num, size_t width, int(*cmp)(const void* e1, const void* e2))
+//{
+//	size_t i = 0;
+//	for (i = 0; i < num - 1; i++)     //num个元素，需要比较 num-1 趟
+//	{
+//		size_t j = 0;
+//		for (j = 0; j < num - 1 - i; j++)      //每一趟需要两两比较 num-1-i 次 
+//		{
+//			if (cmp((char*)base + j * width, (char*)base + (j + 1) * width) > 0)
+//		//为了能使函数通用，所以使用最细的类型char来通过width(一个元素类型的字节大小)使指针指向相邻的两个元素
+//			{
+//				//交换函数，交换两个元素的类容
+//				exchange((char*)base + j * width, (char*)base + (j + 1) * width, width);
+//			}
+//		}
+//	}
+//}
+//int main()
+//{
+//	int arr1[] = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+//	int sz = sizeof(arr1) / sizeof(arr1[0]);
+//
+//	struct stu arr2[3] = { {"张三",15},{"李四",20},{"王五",10} };   //创建一个结构体数组
+//	int ret = sizeof(arr2) / sizeof(arr2[0]);     //计算元素个数
+//
+//	//my_sort(arr1, sz, sizeof(arr1[0]), cmpare_number);   //排arr1整形数组
+//	//my_sort(arr2, ret, sizeof(arr2[0]), cmpare_name);     //排arr2结构体数组 - 名字
+//	my_sort(arr2, ret, sizeof(arr2[0]), cmpare_age);      //排arr2结构体数组 - 年龄
+//
+//	////打印出来看看
+//	//int i = 0;
+//	//for (i = 0; i < sz; i++)
+//	//{
+//	//	printf("%d ", arr[i]);
+//	//}
+//	return 0;
+//}
+
+
 #include<stdio.h>
-#include<stdlib.h>         //qsort库函数的头文件
-#include<string.h>         //strcmp库函数的头文件
-struct stu      //创建一个结构体类型 - stu
-{
-	char name[20];        //名字
-	int age;              //年龄
-};
-int cmpare_name(const void* e1, const void* e2)       //名字比较函数
-{
-	return strcmp((*(struct stu*)e1).name, (*(struct stu*)e2).name);
-	//return strcmp(((struct stu*)e1)->name, ((struct stu*)e2)->name);
-}
-int cmpare_age(const void* e1, const void* e2)        //年龄比较函数
-{
-	return (*(struct stu*)e1).age - (*(struct stu*)e2).age;
-	//return ((struct stu*)e1)->age - ((struct stu*)e2)->age;
-}
 int main()
 {
-	struct stu arr[3] = { {"张三",15},{"李四",20},{"王五",10} };  //创建一个结构体数组
-	int ret = sizeof(arr) / sizeof(arr[0]);    //计算元素个数
-	//qsort(arr, ret, sizeof(arr[0]), cmpare_name);        //按名字来排序
-	qsort(arr, ret, sizeof(arr[0]), cmpare_age);           //按年龄来排序
-	
-	return 0;
-}
+	int a[] = { 1,2,3,4 };
+	printf("%d\n", sizeof(*&a));  //可以等价于  printf("%d\n",sizeof(a));
+	//&a 的类型为：int(*)[4] - 这是一个数组指针
+    //再*则表示把指向一个数组的指针解引用，这时得到的就是整个数组
+    //故结果为：16
+}                                
+                                 
