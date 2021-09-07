@@ -82,25 +82,90 @@
 
 //实现一个函数，打印乘法口诀表，口诀表的行数和列数自己指定
 //如：输入9，输出9 * 9口诀表，输出12，输出12 * 12的乘法口诀表。
+//#include<stdio.h>
+//void my_function(int n)
+//{
+//	int i = 0;
+//	int j = 0;
+//	for (i = 1; i <= n; i++)
+//	{
+//		for (j = 1; j <= i; j++)
+//		{
+//			printf("%d * %d = %-4d", i, j, i * j);
+//		}
+//		printf("\n");
+//	}
+//}
+//int main()
+//{
+//	int num = 0;
+//	printf("请输入：");
+//	scanf("%d", &num);
+//	my_function(num);
+//	return 0;
+//}
+
+
+//strcpy库函数使用 - 拷贝字符串
+//#include<stdio.h>
+//#include<string.h>
+//int main()
+//{
+//	char a[] = "xxxxxxxxxxx";
+//	char b[] = "hello";
+//	char* ret = strcpy(a, b);   //strcpy函数会把dest的首元素地址给返回，所以这里用一个char*指针接收
+//	printf("%s\n", a);
+//	//打印结果为hello，说明strcpy函数在拷贝时会把 \0 也给拷贝过去
+//	return 0;
+//}
+
+
+//memset库函数的使用 - 把从一个地址开始的num个字节空间，修改为value
+// void* memset(void* dest, int c, size_t count);
+//#include<stdio.h>
+//#include<string.h>
+//int main()
+//{
+//	char a[] = "hello world";
+//	char* ret = (char*)memset(a, 'x', sizeof(a) - 1);   // - 1 表示除 \0 以外的所有元素都修改为 x .
+//	//memset库函数返回的是一个 void* 类型的指针，所以我们需要对它强制类型转换
+//	printf("%s\n", ret);
+//	//注意memset函数只能把从dest开始往后count个字节的空间类容修改为 c，这里是一个一个字节修改的
+//	return 0;
+//}
+
+
+//错误示例：
+//#include<stdio.h>
+//#include<string.h>
+//int main()
+//{
+//	int arr[10] = { 0 };
+//	memset(arr, 1, 5 * sizeof(int));
+//	//memset函数是一个一个字节给 1 ，不是4个字节给1
+//	//故每个元素是 0000 0001 0000 0001 0000 0001 0000 0001 - 16843009
+//	int i = 0;
+//	for (i = 0; i < 10; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
+
+
 #include<stdio.h>
-void my_function(int n)
+void swap(int* x, int* y)   //形式参数 - 实参的一份临时拷贝，所以需要传地址。
 {
-	int i = 0;
-	int j = 0;
-	for (i = 1; i <= n; i++)
-	{
-		for (j = 1; j <= i; j++)
-		{
-			printf("%d * %d = %-4d", i, j, i * j);
-		}
-		printf("\n");
-	}
+	*x = *x ^ *y;
+	*y = *x ^ *y;
+	*x = *x ^ *y;
 }
 int main()
 {
-	int num = 0;
-	printf("请输入：");
-	scanf("%d", &num);
-	my_function(num);
+	int a = 10;
+	int b = 20;
+	printf("a = %d b = %d\n", a, b);
+	swap(&a, &b);  //实际参数
+	printf("a = %d b = %d\n", a, b);
 	return 0;
 }
