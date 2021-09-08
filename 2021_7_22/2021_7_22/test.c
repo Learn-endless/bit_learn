@@ -153,19 +153,55 @@
 //}
 
 
+//#include<stdio.h>
+//void swap(int* x, int* y)   //形式参数 - 实参的一份临时拷贝，所以需要传地址。
+//{
+//	*x = *x ^ *y;
+//	*y = *x ^ *y;
+//	*x = *x ^ *y;
+//}
+//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	printf("a = %d b = %d\n", a, b);
+//	swap(&a, &b);  //实际参数
+//	printf("a = %d b = %d\n", a, b);
+//	return 0;
+//}
+
+//函数
+//函数可以嵌套调用，但不能嵌套定义
+//#include<stdio.h>
+//void my_function_2()
+//{
+//	printf("world!");
+//}
+//void my_function()
+//{
+//	printf("hello ");
+//	my_function_2();
+//}
+//int main()
+//{
+//	my_function();
+//	return 0;
+//}
+
+
+//函数的链式访问
+//把一个函数的返回值作为另一个函数的参数
 #include<stdio.h>
-void swap(int* x, int* y)   //形式参数 - 实参的一份临时拷贝，所以需要传地址。
-{
-	*x = *x ^ *y;
-	*y = *x ^ *y;
-	*x = *x ^ *y;
-}
+#include<string.h>
 int main()
 {
-	int a = 10;
-	int b = 20;
-	printf("a = %d b = %d\n", a, b);
-	swap(&a, &b);  //实际参数
-	printf("a = %d b = %d\n", a, b);
+	printf("%d\n", strlen("abc"));        //链式访问
+	char arr1[] = "xxxxxxxxx";
+	char arr2[] = "abc";
+	printf("%s\n", strcpy(arr1, arr2));   //链式访问
+	printf("%d", printf("%d", printf("%d", 43))); 
+	//printf函数返回字符的个数，发生错误，返回负数
+	//结果：4321
+	//scanf函数返回读取的有效字符的个数
 	return 0;
 }
