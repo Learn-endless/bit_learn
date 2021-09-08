@@ -215,25 +215,155 @@
 
 
 //递归法求第n个斐波那契数
+//#include<stdio.h>
+//int my_function(int n)
+//{
+//	if (n <= 2)       //第一项和第二项都是 1
+//	{
+//		return 1;
+//	}
+//	else
+//	{
+//		return my_function(n-1) + my_function(n-2);  //要求的那一项就是前两项之和
+//
+//	}
+//}
+//int main()
+//{
+//	int n = 0;
+//	printf("请输入n的值：");
+//	scanf("%d", &n);
+//	int ret = my_function(n);
+//	printf("第%d个斐波那契数是：%d\n", n, ret);
+//	return 0;
+//}
+
+//函数：先声明后使用
+//#include<stdio.h>
+//int Add(int, int);    //声明
+//int main()
+//{
+//	int a = 10;
+//	int b = 20;
+//	int ret = Add(a, b);
+//	printf("%d + %d = %d\n", a, b, ret);
+//	return 0;
+//}
+//int Add(int x, int y)    //定义
+//{ 
+//	return x + y;
+//}
+
+
+//函数的正确使用
+//#include<stdio.h>
+//#include"Add.h"
+//int main()
+//{
+//	int ret = Add(2, 3);
+//	printf("%d", ret);
+//	return 0;
+//}
+
+
+//函数递归
+//输入一个整数，打印它的每一位
+//#include<stdio.h>
+//void print(size_t n)
+//{
+//	if (n > 9)      //递归的限制条件
+//		print(n / 10);  //每执行一次，就会越来越逼近上面的限制条件
+//
+//	printf("%d ", n % 10);  //这里不能加else，这句代码必须每次都执行
+//}
+//int main()
+//{
+//	size_t n = 0;
+//	scanf("%u", &n);
+//	print(n);
+//
+//	return 0;
+//}
+
+
+//递归求解字符串的长度
+//#include<stdio.h>
+//int my_strlen(char* p)
+//{
+//	if (*p != '\0')
+//		return 1 + my_strlen(p + 1);
+//	else
+//		return 0;
+//}
+//int main()
+//{
+//	char arr[] = "abcde";
+//	int ret = my_strlen(arr);
+//	printf("%d", ret);
+//	return 0;
+//}
+
+
+//递归求解n的阶乘
+//#include<stdio.h>
+//int fac(int n)
+//{ 
+//	if (n == 1)         //n小于等于1时，阶乘为1
+//	{
+//		return 1;
+//	}
+//	else
+//	{
+//		return n * fac(n - 1);   //大于1时，n的阶乘就等于 n 乘上 n - 1 的阶乘
+//	}
+//}
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	int ret = fac(n);
+//	printf("%d的阶乘为》%d\n", n, ret);
+//	return 0;
+//}
+
+
+//用递归实现求第n个斐波那契数 - 最好不要使用递归
 #include<stdio.h>
-int my_function(int n)
+int fib1(int n)
 {
-	if (n <= 2)       //第一项和第二项都是 1
+	if (n == 1 || n == 2)
 	{
 		return 1;
 	}
 	else
 	{
-		return my_function(n-1) + my_function(n-2);  //要求的那一项就是前两项之和
-
+		return fib1(n - 1) + fib1(n - 2);
 	}
+}
+//迭代法(循环) - 更好实现
+int fib2(int n)
+{
+	int a = 1;
+	int b = 1;
+	int c = 1;
+
+	while (n > 2)
+	{
+		c = a + b;
+		a = b;
+		b = c;
+		n--;
+	}
+	return c;
 }
 int main()
 {
 	int n = 0;
-	printf("请输入n的值：");
 	scanf("%d", &n);
-	int ret = my_function(n);
-	printf("第%d个斐波那契数是：%d\n", n, ret);
+	int ret = fib2(n);
+	printf("%d\n", ret);
 	return 0;
 }
+
+//汉诺塔问题
+//青蛙跳台阶问题
