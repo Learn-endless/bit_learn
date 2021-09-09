@@ -328,42 +328,96 @@
 
 
 //用递归实现求第n个斐波那契数 - 最好不要使用递归
-#include<stdio.h>
-int fib1(int n)
-{
-	if (n == 1 || n == 2)
-	{
-		return 1;
-	}
-	else
-	{
-		return fib1(n - 1) + fib1(n - 2);
-	}
-}
-//迭代法(循环) - 更好实现
-int fib2(int n)
-{
-	int a = 1;
-	int b = 1;
-	int c = 1;
-
-	while (n > 2)
-	{
-		c = a + b;
-		a = b;
-		b = c;
-		n--;
-	}
-	return c;
-}
-int main()
-{
-	int n = 0;
-	scanf("%d", &n);
-	int ret = fib2(n);
-	printf("%d\n", ret);
-	return 0;
-}
+//#include<stdio.h>
+//int fib1(int n)
+//{
+//	if (n == 1 || n == 2)
+//	{
+//		return 1;
+//	}
+//	else
+//	{
+//		return fib1(n - 1) + fib1(n - 2);
+//	}
+//}
+////迭代法(循环) - 更好实现
+//int fib2(int n)
+//{
+//	int a = 1;
+//	int b = 1;
+//	int c = 1;
+//
+//	while (n > 2)
+//	{
+//		c = a + b;
+//		a = b;
+//		b = c;
+//		n--;
+//	}
+//	return c;
+//}
+//int main()
+//{
+//	int n = 0;
+//	scanf("%d", &n);
+//	int ret = fib2(n);
+//	printf("%d\n", ret);
+//	return 0;
+//}
 
 //汉诺塔问题
 //青蛙跳台阶问题
+
+#include<stdio.h>
+
+void Mergelist(int* La, int* Lb, int* Lc)
+{
+	InitList(Lc);
+	int i = 1;
+	int j = 1;
+	int k = 0;
+	int ai = 0;
+	int bj = 0;
+	int La_len = ListLength(La);
+	int Lb_len = ListLength(Lb);
+	while ((i <= La_len) && (j <= Lb_len))
+	{
+		GetElem(La, i, ai);
+		GetElem(Lb, j, bj);
+		if (ai <= bj)
+		{
+			ListInsert(Lc, ++k, ai);
+			++i;
+		}
+		else
+		{
+			ListInsert(Lc, ++k, bj);
+			++j;
+		}
+	}
+	while (i <= La_len)
+	{
+		GerElem(La, i++, ai);
+		ListInsert(Lc, ++k, ai);
+	}
+	while (j <= Lb_len)
+	{
+		GerElem(Lb, j++, bj);
+		ListInsert(Lc, ++k, bj);
+	}
+}
+int main()
+{
+	int arr1[10] = { 1,4,2,5,3 };
+	int arr2[10] = { 6,8,9,10,7 };
+	int arr3[100] = { 0 };
+	int i = 0;
+	//归并
+	Mergelist(arr1, arr2, arr3);
+	//打印排序后的数据
+	for (i = 0; i < 10; i++)
+	{
+		printf("%d ", *(arr3 + i));
+	}
+	return 0;
+}
