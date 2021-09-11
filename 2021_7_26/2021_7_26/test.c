@@ -255,54 +255,120 @@
 
 
 //递归实现字符串逆序
+//#include<stdio.h>
+//#include<assert.h>
+//int my_strlen(const char* str)  //自定义求字符串函数
+//{
+//	assert(str);   //断言，避免野指针
+//	int count = 0;
+//	while (*str != '\0')
+//	{
+//		count++;
+//		str++;
+//	}
+//	return count;
+//}
+//
+//void my_rever_string1(char* str1, char* str2)
+//{
+//	if (str1 < str2)
+//	{		
+//		char temp = *str1;
+//		*str1 = *str2;
+//		*str2 = temp;
+//		my_rever_string1(str1 + 1, str2 - 1);
+//
+//	}
+//	else
+//	{
+//		return;
+//	}
+//}
+//
+//void my_rever_string2(char str[])
+//{
+//	int len = my_strlen(str);
+//	char temp = str[0];      //把a放到temp空间中去
+//	str[0] = str[len - 1];   //把f放到以前存放a的空间中去
+//	str[len - 1] = '\0';     //把以前存放f的地方放上 \0
+//	if (my_strlen(str + 1) >= 2) //本次逆序完成后，判断下一次需要逆序的字符串长度是否大于等于2
+//	{
+//		my_rever_string2(str + 1);   //大于等于2说明至少还有2个元素，继续递归
+//	} 
+//	str[len - 1] = temp;   //直到最后一次递归后，开始回弹存放。
+//}
+//int main()
+//{
+//	char arr[] = "abcdefgh";
+//	int sz = my_strlen(arr) - 1;
+////	my_rever_string1(arr, arr + sz);   //把首元素地址和最后一个元素的地址传给函数
+//	my_rever_string2(arr);
+//	printf("%s\n", arr);
+//	return 0;
+//}
+
+
+//递归实现计算一个整数每一位数之和
+//#include<stdio.h>
+//int DitigSum(int n)
+//{
+//	if (n > 9)  //如果是两位数及以上，就进行递归操作
+//	{
+//		return DitigSum(n / 10) + n % 10;
+//	}
+//	else      //一位数的话，就直接将那一位数返回
+//	{
+//		return n;
+//	}
+//}
+//int main()
+//{
+//	int num = 1234;
+//	int ret = DitigSum(num);
+//	printf("%d", ret);
+//	return 0;
+//}
+
+//递归实现n的k次方
+//#include<stdio.h>
+//double DiGui(int n, int k)
+//{
+//	if (k > 0)                      //n^k     (k为正数)
+//		return n * DiGui(n, k - 1);    
+//	else if (k == 0)                //n^0
+//		return 1.0; 
+//	else                            //n^(-k)  (k为负数)
+//		return 1.0 / DiGui(n, -k);
+//}
+//int main()
+//{
+//	int n = 2;
+//	int k = -3;
+//	double ret = DiGui(n, k);
+//	printf("%lf", ret);
+//	return 0;
+//}
+
+//数组
+//#include<stdio.h>
+//int arr1[5];  //全局变量默认的值是0
+//int main()
+//{
+//	int arr[20] = { 1, 2, 3 };  //不完全初始化
+//	int arr2[20];   //局部变量默认随机值
+//	return 0;
+//}
+
+//数组的元素在内存中的空间是连续存放的
 #include<stdio.h>
-#include<assert.h>
-int my_strlen(const char* str)  //自定义求字符串函数
-{
-	assert(str);   //断言，避免野指针
-	int count = 0;
-	while (*str != '\0')
-	{
-		count++;
-		str++;
-	}
-	return count;
-}
-
-void my_rever_string1(char* str1, char* str2)
-{
-	if (str1 < str2)
-	{		
-		char temp = *str1;
-		*str1 = *str2;
-		*str2 = temp;
-		my_rever_string1(str1 + 1, str2 - 1);
-
-	}
-	else
-	{
-		return;
-	}
-}
-
-void my_rever_string2(char str[])
-{
-	int len = my_strlen(str);
-	char temp = str[0];      //把a放到temp空间中去
-	str[0] = str[len - 1];   //把f放到以前存放a的空间中去
-	str[len - 1] = '\0';     //把以前存放f的地方放上 \0
-	if (my_strlen(str + 1) >= 2) //本次逆序完成后，判断下一次需要逆序的字符串长度是否大于等于2
-	{
-		my_rever_string2(str + 1);   //大于等于2说明至少还有2个元素，继续递归
-	} 
-	str[len - 1] = temp;   //直到最后一次递归后，开始回弹存放。
-}
 int main()
 {
-	char arr[] = "abcdefgh";
-	int sz = my_strlen(arr) - 1;
-//	my_rever_string1(arr, arr + sz);   //把首元素地址和最后一个元素的地址传给函数
-	my_rever_string2(arr);
-	printf("%s\n", arr);
+	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+	int sz = sizeof(arr) / sizeof(arr[0]);
+	int i = 0;
+	for (i = 0; i < sz; i++)
+	{
+		printf("%p\n", &arr[i]);
+	}
 	return 0;
 }
