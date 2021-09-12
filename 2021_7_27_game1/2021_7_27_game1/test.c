@@ -24,36 +24,48 @@ void game()
 		//判断输赢
 		ret = IsWin(board, ROW, COL);
 		if (ret != '4')
-		{
+		{		
+			system("cls");    //清下屏幕再打印   
+		   //打印棋盘
+		    DisplayBoard(board, ROW, COL);
 			break;
 		}
-		//打印棋盘
-		DisplayBoard(board, ROW, COL);
 		//电脑下棋
 		ComputerMove(board, ROW, COL);
-		//判断输赢
+		system("cls");    //清下屏幕再打印
+		//打印棋盘
+		DisplayBoard(board, ROW, COL);	
+		//判断输赢	
 		ret = IsWin(board, ROW, COL);
 		if (ret != '4')
 		{
 			break;
 		}
-		//打印棋盘
-		DisplayBoard(board, ROW, COL);
 	}
-	if (ret = '*')
-	{
-		printf("玩家赢\n");
-	}
-	else if (ret = '#')
+	if (ret == '#')
 	{
 		printf("电脑赢\n");
+		printf("5秒后将重新开始！");
+		Sleep(5000);   //显示5秒结果
+		system("cls"); //清屏重新一把
+
+	}
+	else if (ret == '*')
+	{
+		printf("玩家赢\n");		
+		printf("5秒后将重新开始！");
+		Sleep(5000);   //显示5秒结果
+		system("cls"); //清屏重新一把
+
 	}
 	else
 	{
 		printf("平局\n");
+		printf("5秒后将重新开始！");
+		Sleep(5000);   //显示5秒结果
+		system("cls"); //清屏重新一把
+
 	}
-	//打印棋盘
-	DisplayBoard(board, ROW, COL);
 }
 int main()
 {
@@ -67,13 +79,17 @@ int main()
 		switch (input)
 		{
 		case 1:
+			system("cls");  //清一下屏幕
 			game();
 			break;
 		case 0:
+			system("cls");
 			printf("退出游戏\n");
 			break;
 		default:
-			printf("输入错误，请重新选择》");
+			printf("输入错误，请重新选择》\n");
+			Sleep(500);
+			system("cls");
 			break;
 		}
 	} while (input);

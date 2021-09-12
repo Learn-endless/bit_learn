@@ -5,6 +5,8 @@
 #include<stdlib.h>
 #include<time.h>
 
+#include<windows.h>
+
 #define ROW 3
 #define COL 3
 

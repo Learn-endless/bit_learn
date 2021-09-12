@@ -121,31 +121,73 @@ int IsFull(char board[ROW][COL], int row, int col)
 char IsWin(char board[ROW][COL], int row, int col)
 {
 	int i = 0;
+	int flag = 1;
 	//判断每一行
 	for (i = 0; i < row; i++)
 	{
-		if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][2] != ' ')
+		int temp = 1;  //用来标记
+		int j = 0; 
+		for (j = 0; j < col - 1; j++)
 		{
-			return board[i][0];
+			if (board[i][j] != board[i][j + 1])
+			{
+				temp = 0;
+				break;
+			}
+		}
+		if (temp == 1 && board[i][j] != ' ')
+		{
+			return board[i][j];
 		}
 	}
+
 	//判断每一列
-	for (i = 0; i < col; i++)
+	for (i = 0; i < row; i++)
 	{
-		if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[2][i] != ' ')
+		int temp = 1;
+		int j = 0;
+		for (j = 0; j < col - 1; j++)
 		{
-			return board[0][i];
+			if (board[j][i] != board[j + 1][i])
+			{
+				temp = 0;
+				break;
+			}
+		}
+		if (temp == 1 && board[j][i] != ' ')
+		{
+			return board[j][i];
 		}
 	}
+
 	//判断对角线
-	if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[1][1] != ' ')
+	for (i = 1; i < row; i++)
 	{
-		return board[1][1];
+		if (board[0][0] != board[i][i])
+		{
+			flag = 0;
+			break;
+		}
 	}
-	if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[1][1] != ' ')
+	if (flag == 1 && board[0][0] != ' ')
 	{
-		return board[1][1];
+		return board[0][0];
 	}
+
+	flag = 1;
+	for (i = 1; i < col; i++)
+	{
+		if (board[0][col - 1] != board[i][i])
+		{
+			flag = 0;
+			break;
+		}
+	}
+	if (flag == 1 && board[0][col - 1] != ' ')
+	{
+		return board[0][col - 1];
+	}
+
 	//判断是否为平局
 	if (IsFull(board,ROW,COL))
 	{
