@@ -360,15 +360,195 @@
 //}
 
 //数组的元素在内存中的空间是连续存放的
+//#include<stdio.h>
+//int main()
+//{
+//	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//	int i = 0;
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%p\n", &arr[i]);
+//	}
+//	return 0;
+//}
+
+
+//小乐乐在课上学习了二进制八进制与十六进制后，对进制转换产生了浓厚的兴趣。
+//因为他的幸运数字是6，所以他想知道一个数表示为六进制后的结果。请你帮助他解决这个问题。
+//#include<stdio.h>
+//int main()
+//{
+//    int n = 0;
+//    int arr[100] = { 0 };
+//    int i = 0;
+//    scanf("%d", &n);
+//    while (n)
+//    {
+//        arr[i] = n % 6;
+//        n = n / 6;
+//        i++;
+//    }
+//    for (i = i - 1; i >= 0; i--)
+//    {
+//        printf("%d", arr[i]);
+//    }
+//    return 0;
+//}
+
+
+//小乐乐学校教学楼的电梯前排了很多人，他的前面有n个人在等电梯。
+//电梯每次可以乘坐12人，每次上下需要的时间为4分钟（上需要2分钟，下需要2分钟）。
+//请帮助小乐乐计算还需要多少分钟才能乘电梯到达楼上。（假设最初电梯在1层）
+//#include<stdio.h>
+//int main()
+//{
+//    int n = 0;
+//    scanf("%d", &n);
+//    int time = 0;
+//    if (n >= 12)
+//    {
+//        time = n / 12 * 4;
+//        printf("%d", time + 2);
+//    }
+//    else
+//    {
+//        printf("2");
+//    }
+//    return 0;
+//}
+
+
+//小乐乐最近在课上学习了如何求两个正整数的最大公约数与最小公倍数，
+//但是他竟然不会求两个正整数的最大公约数与最小公倍数之和，请你帮助他解决这个问题。
+//#include<stdio.h>
+//int main()
+//{
+//    long long n = 0;
+//    long long m = 0;
+//    long long ret = 0;
+//    long long min = 0;
+//    scanf("%lld %lld", &n, &m);
+//    min = n * m;
+//    while (ret = n % m)
+//    {
+//        n = m;
+//        m = ret;
+//    }
+//    min = min / m;
+//    printf("%lld", min + m);
+//    return 0;
+//}
+
+
+//求在三位数里有多少个质数
+//#include<stdio.h>
+//#include<math.h>
+//int main()
+//{
+//    int i = 0;
+//    for (i = 101; i < 1000; i += 2)
+//    {
+//        int j = 0;
+//        int flag = 1;
+//        for (j = 2; j <= sqrt(i); j++)
+//        {
+//            if (i % j == 0)
+//            {
+//                flag = 0;
+//                break;
+//            }
+//        }
+//        if (flag)
+//        {
+//            printf("%d ", i);
+//        }
+//    }
+//    return 0;
+//}
+
+
+//公务员面试现场打分。有7位考官，从键盘输入若干组成绩，
+//每组7个分数（百分制），去掉一个最高分和一个最低分，输出每组的平均成绩
+//#include<stdio.h>
+//#include<limits.h>
+//int main()
+//{
+//    int store = 0;
+//    int i = 0;
+//    int sum = 0;
+//    int max = INT_MIN;
+//    int min = INT_MAX;
+//    for (i = 0; i < 7; i++)
+//    {
+//        scanf("%d", &store);
+//        if (max < store)
+//        {
+//            max = store;
+//        }
+//        if (min > store)
+//        {
+//            min = store;
+//        }
+//        sum += store;
+//    }
+//    printf("%.2lf", (sum - max - min) / 5.0);
+//    return 0;
+//}
+
+
+//KiKi学习了循环，BoBo老师给他出了一系列打印图案的练习，该任务是打印用“*”组成的“空心”正方形图案。
+//#include<stdio.h>
+//int main()
+//{
+//    int num, i, j;
+//    while (~scanf("%d", &num))
+//    {
+//        for (i = 0; i < num; i++)
+//        {
+//            for (j = 0; j < num; j++)
+//            {
+//                if (i == 0 || j == 0 || j == num - 1 || i == num - 1)
+//                    printf("* ");
+//                else
+//                    printf("  ");
+//            }
+//            printf("\n");
+//        }
+//    }
+//    return 0;
+//}
+
+
+//KiKi想知道已经给出的三条边a，b，c能否构成三角形，
+//如果能构成三角形，判断三角形的类型（等边三角形、等腰三角形或普通三角形）。
 #include<stdio.h>
 int main()
 {
-	int arr[] = { 1,2,3,4,5,6,7,8,9,10 };
-	int sz = sizeof(arr) / sizeof(arr[0]);
-	int i = 0;
-	for (i = 0; i < sz; i++)
-	{
-		printf("%p\n", &arr[i]);
-	}
-	return 0;
+    int a = 0;
+    int b = 0;
+    int c = 0;
+    while (~scanf("%d %d %d", &a, &b, &c))
+    {
+        if ((a + b > c) && (a + c > b) && (c + b > a))
+        {
+            if (a == b && b == c)
+            {
+                printf("Equilateral triangle!\n");
+            }
+            else if (a == b || b == c || a == c)
+            {
+                printf("Isosceles triangle!\n");
+            }
+            else
+            {
+                printf("Ordinary triangle!\n");
+            }
+        }
+        else
+        {
+            printf("Not a triangle!\n");
+        }
+    }
+    return 0;
 }

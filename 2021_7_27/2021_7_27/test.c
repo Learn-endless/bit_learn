@@ -162,3 +162,33 @@
 //	printf("%p\n", &arr + 1);    //跳过一整个数组
 //	return 0;
 //}
+
+
+//实现一个对整形数组的冒泡排序
+#include<stdio.h>
+int main()
+{
+	int arr[] = { 10,9,8,7,6,5,4,3,2,1 };
+	int sz = sizeof(arr) / sizeof(arr[0]);
+
+	int i = 0;
+	for (i = 0; i < sz - 1; i++)
+	{
+		int j = 0;
+		for (j = 0; j < sz - 1 - i; j++)
+		{
+			if (arr[j] > arr[j + 1])
+			{
+				int temp = arr[j + 1];
+				arr[j + 1] = arr[j];
+				arr[j] = temp;
+			}
+		}
+	}
+
+	for (i = 0; i < sz; i++)
+	{
+		printf("%d ", arr[i]);
+	}
+	return 0;
+}
