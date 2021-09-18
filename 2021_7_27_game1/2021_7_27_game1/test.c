@@ -67,6 +67,7 @@ void game()
 
 	}
 }
+
 int main()
 {
 	int input = 0;
@@ -79,17 +80,17 @@ int main()
 		switch (input)
 		{
 		case 1:
-			system("cls");  //清一下屏幕
+			//system("cls");  //清一下屏幕
 			game();
 			break;
 		case 0:
-			system("cls");
+			//system("cls");
 			printf("退出游戏\n");
 			break;
 		default:
 			printf("输入错误，请重新选择》\n");
-			Sleep(500);
-			system("cls");
+			//Sleep(500);
+			//system("cls");
 			break;
 		}
 	} while (input);

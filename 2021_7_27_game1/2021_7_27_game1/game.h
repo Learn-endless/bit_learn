@@ -7,8 +7,8 @@
 
 #include<windows.h>
 
-#define ROW 3
-#define COL 3
+#define ROW 3  //行
+#define COL 3  //列
 
 //初始化棋盘
 void InitBoard(char board[ROW][COL], int row, int col);
