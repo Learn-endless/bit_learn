@@ -165,30 +165,68 @@
 
 
 //实现一个对整形数组的冒泡排序
+//#include<stdio.h>
+//int main()
+//{
+//	int arr[] = { 10,9,8,7,6,5,4,3,2,1 };
+//	int sz = sizeof(arr) / sizeof(arr[0]);
+//
+//	int i = 0;
+//	for (i = 0; i < sz - 1; i++)
+//	{
+//		int j = 0;
+//		for (j = 0; j < sz - 1 - i; j++)
+//		{
+//			if (arr[j] > arr[j + 1])
+//			{
+//				int temp = arr[j + 1];
+//				arr[j + 1] = arr[j];
+//				arr[j] = temp;
+//			}
+//		}
+//	}
+//
+//	for (i = 0; i < sz; i++)
+//	{
+//		printf("%d ", arr[i]);
+//	}
+//	return 0;
+//}
+
+
+//交换两个数组的内容，数组一样大
 #include<stdio.h>
+void Print(int* arr, int n)
+{
+	int i = 0;
+	for (i = 0; i < n; i++)
+	{
+		printf("%d ", *(arr + i));
+	}
+}
+
+void Exchange(int* arr1, int* arr2, int n)
+{
+	int i = 0;
+	for (i = 0; i < n; i++)
+	{
+		int temp = *(arr1 + i);
+		*(arr1 + i) = *(arr2 + i);
+		*(arr2 + i) = temp;
+	}
+}
 int main()
 {
-	int arr[] = { 10,9,8,7,6,5,4,3,2,1 };
-	int sz = sizeof(arr) / sizeof(arr[0]);
-
-	int i = 0;
-	for (i = 0; i < sz - 1; i++)
-	{
-		int j = 0;
-		for (j = 0; j < sz - 1 - i; j++)
-		{
-			if (arr[j] > arr[j + 1])
-			{
-				int temp = arr[j + 1];
-				arr[j + 1] = arr[j];
-				arr[j] = temp;
-			}
-		}
-	}
-
-	for (i = 0; i < sz; i++)
-	{
-		printf("%d ", arr[i]);
-	}
+	int arr1[10] = { 1,2,3,4,5,6,7,8,9,10 };
+	int arr2[10] = { 11,12,13,14,15,16,17,18,19,20 };
+	int sz = sizeof(arr1) / sizeof(arr1[0]);
+	Print(arr1, sz);  //自定义打印函数
+	printf("\n");
+	Print(arr2, sz);
+	Exchange(arr1, arr2, sz);
+	printf("\n");
+	Print(arr1, sz);  
+	printf("\n");
+	Print(arr2, sz);
 	return 0;
 }
