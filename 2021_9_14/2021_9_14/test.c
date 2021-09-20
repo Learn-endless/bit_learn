@@ -34,8 +34,8 @@
 //	//char arr3[] = { 'a','b','c'};
 //	//strcat(arr1, arr3); // error	
 //
-//	char* p = strcat(arr1, arr2);
-//	printf("%s\n", p);
+//	//char* p = strcat(arr1, arr2);
+//	//printf("%s\n", p);
 //	char* p1 = my_strcat(arr1, arr2);
 //	printf("%s\n", p1);
 //	return 0;
@@ -89,6 +89,7 @@
 //#include<string.h>
 //#include<assert.h>
 //
+////模拟实现strcmp函数
 //int my_strcmp(const char* str1, const char* str2)
 //{
 //	assert(str1 && str2);
@@ -107,12 +108,28 @@
 //	char arr1[] = "abcdef";
 //	char arr2[] = "abcd";
 //
-//	int ret = strcmp(arr1, arr2);
-//	if (ret == 0)
+//	//int ret = strcmp(arr1, arr2);
+//	//if (ret == 0)
+//	//{
+//	//	printf("=\n");
+//	//}
+//	//else if (ret > 0)
+//	//{
+//	//	printf(">\n");
+//	//}
+//	//else
+//	//{
+//	//	printf("<\n");
+//	//}
+//
+//	//printf("%d\n", ret);
+//
+//	int temp = my_strcmp(arr1, arr2);
+//	if (temp == 0)
 //	{
 //		printf("=\n");
 //	}
-//	else if (ret > 0)
+//	else if (temp > 0)
 //	{
 //		printf(">\n");
 //	}
@@ -120,11 +137,6 @@
 //	{
 //		printf("<\n");
 //	}
-//
-//	printf("%d\n", ret);
-//
-//	int temp = my_strcmp(arr1, arr2);
-//
 //	printf("%d\n", temp);
 //
 //	return 0;
@@ -217,18 +229,18 @@
 //}
 //int main()
 //{
-//	char str1[] = "abcd";
+//	char str1[] = "efabcdgh";
 //	char str2[] = "abcd";
-//	char* ret = strstr(str1, str2);
-//	if (ret == NULL)
-//	{
-//		printf("NULL空指针\n");
-//	}
-//	else
-//	{
-//		printf("%s\n", ret);
-//	}
 //
+//	//char* ret = strstr(str1, str2);
+//	//if (ret == NULL)
+//	//{
+//	//	printf("NULL空指针\n");
+//	//}
+//	//else
+//	//{
+//	//	printf("%s\n", ret);
+//	//}
 //	char* temp = my_strstr(str1, str2);
 //	if (temp == NULL)
 //	{
@@ -267,35 +279,40 @@
 //memcpy - 内存拷贝函数
 //void *memcpy( void *dest, const void *src, size_t count );
 //这个函数在拷贝时，是一个字节一个字节来进行拷贝的
+//#include<stdio.h>
+//#include<string.h>
+//#include<assert.h>
+//void* my_memcpy(void* dest,const void* sour, size_t count)
+//{
+//	assert(dest && sour);
+//	void* ret = dest;
+//	while (count--)
+//	{
+//		*(char*)dest = *(char*)sour;    //一个一个字节拷贝，用最细的单位
+//		dest = (char*)dest + 1;         //这样写可移植性更高
+//		sour = (char*)sour + 1;          
+//	}
+//	return ret;     //返回目标字符串的首元素地址
+//}
+//int main()
+//{
+//	int arr1[] = { 1,2,3,4,5 };
+//	int arr2[20] = { 0 };
+//
+//	//模拟实现memcpy函数
+//	int* ret = my_memcpy(arr2, arr1,sizeof(arr1)); // - 使用自定义函数
+//	//int* ret = memcpy(arr2,arr1,sizeof(arr1));   // - 使用库函数
+//
+//	int i = 0;
+//	for (i = 0; i < 20; i++)
+//	{
+//		printf("%d ", *(ret + i));
+//	}
+//
+//	return 0;
+//}
+
+
+//模拟实现strlen - 统计字符的个数
 #include<stdio.h>
-#include<string.h>
-#include<assert.h>
-void* my_memcpy(void* dest,const void* sour, size_t count)
-{
-	assert(dest && sour);
-	void* ret = dest;
-	while (count--)
-	{
-		*(char*)dest = *(char*)sour;    //一个一个字节拷贝，用最细的单位
-		dest = (char*)dest + 1;         //这样写可移植性更高
-		sour = (char*)sour + 1;          
-	}
-	return ret;     //返回目标字符串的首元素地址
-}
 int main()
-{
-	int arr1[] = { 1,2,3,4,5 };
-	int arr2[20] = { 0 };
-
-	//模拟实现memcpy函数
-	int* ret = my_memcpy(arr2, arr1,sizeof(arr1)); // - 使用自定义函数
-	//int* ret = memcpy(arr2,arr1,sizeof(arr1));   // - 使用库函数
-
-	int i = 0;
-	for (i = 0; i < 20; i++)
-	{
-		printf("%d ", *(ret + i));
-	}
-
-	return 0;
-}
