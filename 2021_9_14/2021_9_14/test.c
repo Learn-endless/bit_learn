@@ -276,6 +276,7 @@
 //	return 0;
 //}
 
+
 //memcpy - 内存拷贝函数
 //void *memcpy( void *dest, const void *src, size_t count );
 //这个函数在拷贝时，是一个字节一个字节来进行拷贝的
@@ -314,5 +315,306 @@
 
 
 //模拟实现strlen - 统计字符的个数
-#include<stdio.h>
+//#include<stdio.h>
+//#include<assert.h>
+//size_t my_strlen(const char* p)
+//{
+//	assert(p);
+//	int count = 0;
+//	while (*p++)
+//	{
+//		count++;
+//	}
+//	return count;
+//}
+//int main()
+//{
+//	char arr[] = "abcdef";
+//	int ret = my_strlen(arr);
+//	printf("%d\n", ret);
+//
+//	return 0;
+//}
+
+
+//模拟实现strcpy函数
+//char *strcpy( char *strDestination, const char *strSource );
+//#include<stdio.h>
+//#include<assert.h>
+//
+//char* my_strcpy(char* dest, const char* sour)
+//{
+//	char* p = dest;
+//	assert(dest && sour);
+//	while (*dest++ = *sour++)
+//	{
+//		;
+//	}
+//	return p;
+//}
+//
+//int main()
+//{
+//	char arr1[] = "abcdef";
+//	char arr2[200] = { 0 };
+//	char* p = my_strcpy(arr2, arr1);
+//	printf("%s\n", p);
+//}
+
+
+//模拟实现 memmove 函数 —— 内存拷贝函数(可以拷贝内存重叠的地方)
+//void *memmove( void *dest, const void *src, size_t count );
+//#include<stdio.h>
+//#include<assert.h>
+//void* my_memmove(void* dest, const void* src, size_t count)
+//{
+//	void* ret = dest;
+//	assert(dest && src);
+//	//dest 在 src 的右边，从后向前拷贝
+//	if (dest > src)
+//	{
+//		while (count--)
+//		{
+//			*((char*)dest + count) = *((char*)src + count);
+//		}
+//	}
+//	// dest 在 src 的左边，从前往后拷贝
+//	else
+//	{
+//		while (count--)
+//		{
+//			*((char*)dest)++ = *((char*)src)++;
+//		}
+//	}
+//	return ret;
+//}
+//int main()
+//{
+//	char arr[] = "abcdefgh student";
+//	char* p = my_memmove(arr+2, arr, 4);
+//	printf("%s\n", p);
+//	return 0;
+//}
+
+
+//strlen实例
+//#include<stdio.h>
+//#include<string.h>  //引头文件
+//int main()
+//{
+//	char str1[] = "abcd\0efgh"; 
+//	char str2[] = { 'a','b','c','d'}; //不放字符串结尾标志
+//	size_t ret1 = strlen(str1); //接收统计的个数
+//	size_t ret2 = strlen(str2);
+//	printf("%u\n", ret1);      //size_t :unsigned int,故使用%u打印
+//	printf("%u\n", ret2);
+//	return 0;
+//}
+
+
+//my_strlen
+//size_t strlen( const char *string );
+//#include<stdio.h>
+//#include<assert.h>    //断言的头文件。
+//size_t my_strlen(const char* str)  // const修饰，使原字符串不会被修改。
+//{
+//	assert(str);      //断言：为空指针(NULL)时报错。
+//	size_t count = 0; //size_t 类型的计数器，使它跟返回类型一致。
+//	while (*str++)
+//	{
+//		count++;
+//	}
+//	return count;
+//}
+//int main()
+//{
+//	char str1[] = "abcd\0efgh";        //提前给个\0
+//	char str2[] = { 'a','b','c','d' }; //不放\0
+//	size_t ret1 = my_strlen(str1);   
+//	size_t ret2 = my_strlen(str2);
+//	printf("%u\n", ret1);     
+//	printf("%u\n", ret2);
+//
+//	return 0;
+//}
+
+
+////strcpy - 字符串拷贝函数
+////char *strcpy( char *strDestination, const char *strSource );
+//#include<stdio.h>
+//#include<string.h>
+//int main()
+//{
+//	char arr1[] = "abcdef";
+//	char arr2[] = "xxxxxxxxxxxxxx";
+//	char* p = strcpy(arr2, arr1);
+// 
+//	printf("%s\n", p);
+//
+//	return 0;
+//}
+
+
+//模拟实现 strcpy 库函数
+//#include<stdio.h>
+//#include<assert.h>
+//char* my_strcpy(char* dest,const char* src)
+//{
+//	assert(dest && src);   //断言，避免空指针
+//	char* ret = dest;
+//	while (*dest++ = *src++)
+//	{
+//		;
+//	}
+//	return ret;    //返回目标地址
+//}
+//int main()
+//{
+//	char arr1[] = "abcdef";
+//	char arr2[] = "xxxxxxxxxxxxxx";
+//	char* p = my_strcpy(arr2, arr1);
+//	printf("%s\n", p);
+//
+//	return 0;
+//}
+
+//strcat - 字符串追加
+//char* strcat(char* strDestination, const char* strSource);
+//#include<stdio.h>
+//#include<string.h>
+//int main()
+//{
+//	char str1[50] = "abc\0abc";
+//	strcat(str1, str1);
+//	printf("%s\n", str1);
+//		
+//	return 0;
+//}
+
+
+//模拟实现my_strcat函数
+//#include<stdio.h>
+//#include<assert.h>
+//char* my_strcat(char* dest, const char* src)
+//{
+//	assert(dest && src);
+//	char* ret = dest;
+//	while (*dest)
+//	{
+//		dest++;
+//	}
+//	while (*dest++ = *src++)
+//	{
+//		;
+//	}
+//	return ret;
+//}
+//int main()
+//{
+//	char str1[20] = "abc";   //不完全初始化
+//	char str2[] = "def";
+//	char* ret = my_strcat(str1, str2);
+//	printf("%s\n", ret);
+//	return 0;
+//}
+
+
+//strcmp - 字符串比较函数
+//int strcmp(const char* string1, const char* string2);
+//#include<stdio.h>
+//#include<string.h>
+//int main()
+//{
+//	char str1[] = "abcdef";
+//	char str2[] = "abc";
+//	int ret = strcmp(str1, str2);
+//	if (ret > 0)
+//	{
+//		printf(">");
+//	}
+//	else if (ret < 0)
+//	{
+//		printf("<");
+//	}
+//	else
+//	{
+//		printf("=");
+//	}
+//	return 0;
+//}
+
+
+//模拟实现strcmp库函数
+//#include<stdio.h>
+//#include<assert.h>
+//int my_strcmp(const char* str1, const char* str2)
+//{
+//	assert(str1 && str2);
+//	while (*str1 == *str2 && *str1)
+//	{
+//		str1++;
+//		str2++;
+//	}
+//	return *str1 - *str2;
+//}
+//int main()
+//{
+//	char str1[] = "abc";
+//	char str2[] = "abcdef";
+//	int ret = my_strcmp(str1, str2);
+//	if (ret > 0)
+//	{
+//		printf(">\n");
+//	}
+//	else if (ret < 0)
+//	{
+//		printf("<\n");
+//	}
+//	else
+//	{
+//		printf("=\n");
+//	}
+//	printf("%d\n", ret);  //打印一下 my_strcmp 的返回值
+//	return 0;
+//}
+
+
+//strstr - 在目标字符串中查找源字符串，找到后返回目标字符串中源字符串的地址，反之，返回NULL
+//#include <stdio.h>
+//#include <string.h>
+//int main()
+//{
+//	char str[] = "This is a simple string";
+//	char* ret = strstr(str, "simple");
+//	if (ret == NULL)
+//	{
+//		printf("String not found!\n");
+//	}
+//	else
+//	{
+//		printf("%s\n", ret);
+//	}
+//	return 0;
+//}
+
+
+//模拟实现strstr库函数
+#include <stdio.h>
+char* my_strstr(const char* str1, const char* str2)
+{
+
+}
 int main()
+{
+	char str[] = "This is a simple string";
+	char* ret = my_strstr(str, "simple");
+	if (ret == NULL)
+	{
+		printf("String not found!\n");
+	}
+	else
+	{
+		printf("%s\n", ret);
+	}
+	return 0;
+}
