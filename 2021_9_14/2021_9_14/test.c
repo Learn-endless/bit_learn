@@ -158,8 +158,7 @@
 //	char arr3[] = "abcdefgh";
 //	char arr2[] = "xxxx";
 //
-//	char* p1 = strncpy(arr1, arr2, 4);
-//	printf("%s\n", arr1);
+//	char* p1 = strncpy(arr1, arr2, 2);
 //	printf("%s\n", p1);
 //	char* p2 = strncpy(arr3, arr2, 6);   //超过，补'\0'
 //	printf("%s\n", p2);
@@ -173,10 +172,9 @@
 //#include<string.h>
 //int main()
 //{
-//	char arr1[20] = "abc\0xxxxxxxxxxxx";
+//	char arr1[50] = "abc\0xxxxxxxxxxxx";
 //	char arr2[] = "defgh";
-//	//strncat(arr1, arr2, 3);
-//	strncat(arr1, arr2, 8);
+//	strncat(arr1, arr2, 8);  //从第一个'\0'出开始追加。
 //	printf("%s\n", arr1);
 //	return 0;
 //}
@@ -189,11 +187,22 @@
 //int main()
 //{
 //	char arr1[] = "abcdefgh";
-//	char arr2[] = "ab";
+//	char arr2[] = "abcd";
 //	int ret = strncmp(arr1, arr2, 4);
+//	if (ret > 0)
+//	{
+//		printf(">\n");
+//	}
+//	else if (ret < 0)
+//	{
+//		printf("<\n");
+//	}
+//	else
+//	{
+//		printf("=\n");
+//	}
 //
 //	printf("%d\n", ret);
-//
 //	return 0;
 //}
 
@@ -599,22 +608,204 @@
 
 
 //模拟实现strstr库函数
-#include <stdio.h>
-char* my_strstr(const char* str1, const char* str2)
-{
+//#include <stdio.h>
+//#include<assert.h>
+//const char* my_strstr(const char* str1, const char* str2)
+//{
+//	assert(str1 && str2);
+//	while (1)
+//	{
+//		const char* p = str1;
+//		const char* q = str2;
+//		while (*p == *q && *p != '\0' && *q != '\0')
+//		{
+//			p++;
+//			q++;
+//		}
+//		if (*q == '\0')
+//		{
+//			return str1;
+//		}
+//		else if (*str1 == '\0')
+//		{
+//			return NULL;
+//		}
+//		str1++;
+//	}
+//}
+//int main()
+//{
+//	char str[] = "This is a simple string";
+//    const char* ret = my_strstr(str, "simple");
+//	if (ret == NULL)
+//	{
+//		printf("String not found!\n");
+//	}
+//	else
+//	{
+//		printf("%s\n", ret);
+//	}
+//	return 0;
+//}
 
-}
+//strtok() - 字符串分隔函数
+//char *strtok( char *strToken, const char *strDelimit );
+//#include<stdio.h>
+//#include<string.h>
+//int main()
+//{
+//	char str[] = "This is a simple string";
+//	char seq[] = " ";         //用来存储分隔符的字符串
+//
+//	char str1[200] = { 0 };   //strtok函数会改变源字符串的内容
+//	strcpy(str1, str);        //所以拷贝一份用来使用
+//	//strtok这个函数只有在第一次使用时需要传入目标字符串的首地址，
+//	//往后它就会记住分隔符后面第一个字符的地址，并且每次分隔后，它
+//	//就会返回分隔出的字符串的首元素地址
+//	for (char* ret = strtok(str1, seq); ret != NULL; ret = strtok(NULL, seq))
+//    //这个函数配和for循环特别好用，所用的都分隔完毕后，它就会返回一个NULL
+//	{
+//		printf("%s\n",ret);
+//	}
+//
+//	return 0;
+//}
+
+
+//模拟实现my_strtok
+//#include<stdio.h>
+//#include<string.h>
+//#include<assert.h>
+//char* my_strtok(char* str,const char* seq)
+//{	
+//	assert(seq);
+//	static char* Q = "abc";         //随便指向一串常量字符串，避免野指针
+//	if (*Q == '\0')                 //分隔完所有字符串了
+//	{
+//		return NULL;
+//	}     
+//	if (str != NULL)                //当时第一次执行strtok时，走if，否则走else
+//	{
+//		char* ret = str;            //存一份起始坐标
+//		char* w = str;
+//		while (*w != '\0')
+//		{
+//			const char* temp = seq; //用来遍历分隔符字符串
+//			while (*temp != '\0')
+//			{
+//				if (*w != *temp)   //遍历
+//				{
+//					temp++;       
+//				}
+//				else               //找到了分隔出的字符串
+//				{
+//					*w = '\0';     //分隔符置'\0'
+//					Q = w + 1;     //下一个字符串的首元素地址放到Q中去
+//					return ret;    //返回分隔出的字符串首元素地址
+//				}
+//			}
+//			w++;
+//		}
+//		Q = w;                    //把字符串末尾'\0'的地址给Q，表示字符串分隔完了。
+//		return ret;               //返回当前字符串的首元素地址
+//	}
+//	else
+//	{
+//		char* ret = Q;           //拷贝一份首元素地址
+//		char* w = Q;             //把Q里面存放的下一个字符串的首元素地址给到w              
+//		while (*w != '\0')
+//		{
+//			const char* temp = seq;
+//			while (*temp != '\0')
+//			{
+//				if (*w != *temp)
+//				{
+//					temp++;
+//				}
+//				else
+//				{
+//					*w = '\0';
+//					Q = w + 1;
+//					return ret;
+//				}
+//			}
+//			w++;
+//		}
+//		Q = w;
+//		return ret;
+//	}
+//}
+//
+//int main()
+//{
+//	char str[] = "This is a simple string";
+//	char seq[] = " ";         //用来存储分隔符的字符串
+//
+//	char str1[200] = { 0 };   //strtok函数会改变源字符串的内容
+//	strcpy(str1, str);        //所以拷贝一份用来使用
+//	//strtok这个函数只有在第一次使用时需要传入目标字符串的首地址，
+//	//往后它就会记住分隔符后面第一个字符的地址，并且每次分隔后，它
+//	//就会返回分隔出的字符串的首元素地址
+//	for (char* ret = my_strtok(str1, seq); ret != NULL; ret = my_strtok(NULL, seq))
+//		//这个函数配和for循环特别好用，所用的都分隔完毕后，它就会返回一个NULL
+//	{
+//		printf("%s\n", ret);
+//	}
+//
+//	return 0;
+//}
+
+
+//#include <stdio.h>
+//#include <string.h>
+//#include <errno.h>//必须包含的头文件
+//int main()
+//{
+//	FILE* pFile;
+//	pFile = fopen("unexist.ent", "r");
+//	if (pFile == NULL)
+//		printf("Error opening file unexist.ent: %s\n", strerror(errno));
+//	//errno: Last error number
+//	return 0;
+//}
+
+
+//strerror() - 可以返回C语言内置的错误码对应的错误信息
+//#include<stdio.h>
+//#include<string.h>
+//int main()
+//{
+//	printf("%s\n", strerror(-1));// Unknown error
+//	printf("%s\n", strerror(0));// No error
+//	printf("%s\n", strerror(1));// Operation not permitted
+//	printf("%s\n", strerror(2));// No such file or directory
+//	printf("%s\n", strerror(3));// No such process
+//	printf("%s\n", strerror(4));// Interrupted function call
+//	printf("%s\n", strerror(5));// Input / output error
+//
+//	FILE* pf = fopen("test.txt", "r");
+//	if (pf == NULL)
+//	{
+//		printf("%s\n", strerror(errno));   //errno - C语言里存放错误码信息的内置全局变量
+//		perror("测试");//打印 ：+ 错误信息
+//	}
+//	else
+//	{
+//		printf("打开文件成功\n");
+//	}
+//	return 0;
+//}
+
+
+#include<stdio.h>
 int main()
 {
-	char str[] = "This is a simple string";
-	char* ret = my_strstr(str, "simple");
-	if (ret == NULL)
-	{
-		printf("String not found!\n");
-	}
-	else
-	{
-		printf("%s\n", ret);
-	}
+	char str[] = "abcdef";
+	char* p = "abcdef";
+
+	printf("abcdef\n");   //等价的
+	printf(str);
+	printf(p);
+
 	return 0;
 }
