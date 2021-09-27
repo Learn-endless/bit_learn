@@ -2,6 +2,7 @@
 
 #include"contact.h"
 
+//通讯录面板
 void menu()
 {
 	printf("************************************\n");
@@ -11,6 +12,20 @@ void menu()
 	printf("******    6.cls      7.sort   ******\n");
 	printf("************************************\n");
 }
+
+//用来存放对通讯录的操作
+enum board
+{
+	EXIT,
+	ADD,
+	DEL,
+	SEARCH,
+	MODIFY,
+	DIS,
+	CLS,
+	SORT
+};
+
 int main()
 {
 	int input = 0;      //接收选项
@@ -26,28 +41,28 @@ int main()
 		scanf("%d", &input);
 		switch (input)
 		{
-		case 0:
+		case EXIT:                  
 			printf("退出通讯录！\n");
 			break;
-		case 1:
+		case ADD:               //添加联系人
 			AddPeople(&con);
 			break;
-		case 2:
+		case DEL:               //删除联系人
 			DelPeople(&con);
 			break;
-		case 3:
+		case SEARCH:            //查询联系人
 			SearchPeople(&con);
 			break;
-		case 4:
+		case MODIFY:            //修改联系人
 			ModPeople(&con);
 			break;
-		case 5:
+		case DIS:               //显示通讯录
 			Display(&con);
 			break;
-		case 6:
+		case CLS:               //清空联系人
 			ClsContact(&con);
 			break;
-		case 7:
+		case SORT:              //给联系人按名字排升序
 			NameSort(&con);
 			break;
 		default:

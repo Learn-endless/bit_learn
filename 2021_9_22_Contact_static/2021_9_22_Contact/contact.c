@@ -24,14 +24,25 @@ void AddPeople(struct Contact* pc)
 	}
 	else
 	{
+		//printf("请输入姓名：");
+		//scanf("%s", pc->Data[pc->sz].name);
+		//printf("请输入性别：");
+		//scanf("%s", pc->Data[pc->sz].sex);
+		//printf("请输入年龄：");
+		//scanf("%d", &(pc->Data[pc->sz].age));
+		//printf("请输入电话号码：");
+		//scanf("%s", pc->Data[pc->sz].number);
+		//printf("请输入地址：");
+		//scanf("%s", pc->Data[pc->sz].address);
+
 		printf("请输入姓名：");
-		scanf("%s", temp.name);
+		scanf("%s", temp.name);      
 		printf("请输入性别：");
-		scanf("%s", temp.sex);
+		scanf("%s", temp.sex);       
 		printf("请输入年龄：");
-		scanf("%d", &temp.age);
+		scanf("%d", &temp.age);      
 		printf("请输入电话号码：");
-		scanf("%s", temp.number);
+		scanf("%s", temp.number);    
 		printf("请输入地址：");
 		scanf("%s", temp.address);
 
@@ -45,7 +56,7 @@ void AddPeople(struct Contact* pc)
 //删除联系人信息
 void DelPeople(struct Contact* pc)
 {
-	if (pc->sz == 0)
+	if (pc->sz == 0)           //判断通讯录是否为空
 	{
 		printf("通讯录为空，删除失败！\n");
 	}
@@ -56,19 +67,19 @@ void DelPeople(struct Contact* pc)
 		printf("请输入要删除联系人的名字：");
 		scanf("%s", name);
 		//查找该联系人
-		int ret = FindPeople(pc, name);
-		if (ret == -1)
+		int ret = FindPeople(pc, name);   //自定义查找联系人函数，找到返回下标，否则返回 -1
+		if (ret == -1)                    
 		{
 			printf("该联系人不存在！\n");
 		}
 		else
 		{
 			int j = 0;
-			for (j = ret; j < pc->sz - 1; j++)
+			for (j = ret; j < pc->sz - 1; j++)    //从查找的联系人开始，把后面的联系人整体向前移动一位
 			{
 				pc->Data[j] = pc->Data[j + 1];    //把该联系人的信息给覆盖掉
 			}
-			pc->sz--;
+			pc->sz--;                             //当前联系人数量减一
 			printf("删除成功！\n");
 		}
 	}
@@ -78,44 +89,58 @@ void DelPeople(struct Contact* pc)
 int FindPeople(struct Contact* pc, char* name)
 {
 	int i = 0;
-	for (i = 0; i < pc->sz; i++)
+	for (i = 0; i < pc->sz; i++)   
+	//当前通讯录有多少联系人就遍历多少次，直到找到所需要的那个
 	{
 		if (strcmp(pc->Data[i].name, name) == 0)
+		//用字符串比较函数，在判断是不是我想查找的那个联系人
 		{
-			return i;
-		}
+			return i;     //找到了，返回下标
+		} 
 	}
-	return -1;
+	return -1;     //没找到，返回 -1
 }
 
 //显示通信录里的联系人
 void Display(struct Contact* pc)
 {
-	printf("%10s\t%2s\t%4s\t%8s\t%10s\n\n", "name", "sex", "age", "number", "address");
+	printf("%10s\t%2s\t%4s\t%8s\t%10s\n\n", 
+		"name", "sex", "age", "number", "address");
 	int i = 0;
-	for (i = 0; i < pc->sz; i++)
+	for (i = 0; i < pc->sz; i++) //当前有多少联系人，就循环多少次
 	{
 		printf("%10s\t%2s\t%4d\t%8s\t%10s\n", 
-			pc->Data[i].name, pc->Data[i].sex, pc->Data[i].age, pc->Data[i].number, pc->Data[i].address);
+			pc->Data[i].name, pc->Data[i].sex, pc->Data[i].age, 
+			pc->Data[i].number, pc->Data[i].address);
 	}
 }
 
 //查找联系人并打印其信息
 void SearchPeople(struct Contact* pc)
 {
-	char name[NAME_MAX] = { 0 };
-	printf("请输入联系人的名字：");
-	scanf("%s", name);
-	int ret = FindPeople(pc, name);
-	if (ret == -1)
+	char name[NAME_MAX] = { 0 };     //临时存放需要查询的联系人的名字
+	if (pc->sz == 0)        //判断通讯录是否为空
 	{
-		printf("该联系人不存在！\n");
+		printf("通讯录为空，查询失败！\n");
 	}
 	else
 	{
-		printf("%10s\t%2s\t%4s\t%8s\t%10s\n\n", "name", "sex", "age", "number", "address");
-		printf("%10s\t%2s\t%4d\t%8s\t%10s\n",
-			pc->Data[ret].name, pc->Data[ret].sex, pc->Data[ret].age, pc->Data[ret].number, pc->Data[ret].address);
+		printf("请输入联系人的名字：");
+		scanf("%s", name);
+		int ret = FindPeople(pc, name);  //查找该联系人
+		if (ret == -1)
+		{
+			printf("该联系人不存在！\n");
+		}
+		else
+		{
+			//打印该联系人的具体信息
+			printf("%10s\t%2s\t%4s\t%8s\t%10s\n\n",
+				"name", "sex", "age", "number", "address");
+			printf("%10s\t%2s\t%4d\t%8s\t%10s\n",
+				pc->Data[ret].name, pc->Data[ret].sex, pc->Data[ret].age,
+				pc->Data[ret].number, pc->Data[ret].address);
+		}
 	}
 }
 
@@ -123,34 +148,47 @@ void SearchPeople(struct Contact* pc)
 void ModPeople(struct Contact* pc)
 {
 	char name[NAME_MAX] = { 0 };
-	printf("请输入需要修改的联系人名字：");
-	scanf("%s", name);
-	int ret = FindPeople(pc, name);
-	if (ret == -1)
+	if (pc->sz == 0)      //先判断是不是空的通讯录
 	{
-		printf("该联系人不存在！\n");
+		printf("通讯录为空，修改失败！\n");
 	}
 	else
 	{
-		struct PeoInfo temp = { 0 };
-		printf("请输入新的名字：");
-		scanf("%s", temp.name);
-		printf("请输入新的性别：");
-		scanf("%s", temp.sex);
-		printf("请输入新的年龄：");
-		scanf("%d", &temp.age);
-		printf("请输入新的电话：");
-		scanf("%s", temp.number);
-		printf("请输入新的地址：");
-		scanf("%s", temp.address);
+		printf("请输入需要修改的联系人名字：");
+		scanf("%s", name);
+		int ret = FindPeople(pc, name);    //查找该联系人，并返回其下标
+		if (ret == -1)
+		{
+			printf("该联系人不存在！\n");
+		}
+		else
+		{
+			//和添加联系人信息一样，创建一个临时变量，用来存放我要输入的信息
+			struct PeoInfo temp = { 0 };
 
-		pc->Data[ret] = temp;
-		printf("修改成功！\n");
+			//逐条输入
+			printf("请输入新的名字：");
+			scanf("%s", temp.name);
+			printf("请输入新的性别：");
+			scanf("%s", temp.sex);
+			printf("请输入新的年龄：");
+			scanf("%d", &temp.age);
+			printf("请输入新的电话：");
+			scanf("%s", temp.number);
+			printf("请输入新的地址：");
+			scanf("%s", temp.address);
+
+			//覆盖掉原来联系人的信息
+			pc->Data[ret] = temp;
+
+			//提示一下
+			printf("修改成功！\n");
+		}
 	}
 }
 
 //按名字升序排通讯录
-int name_sort(void* e1, void* e2)
+int name_sort(const void* e1, const void* e2)
 {
 	return strcmp(((struct PeoInfo*)e1)->name, ((struct PeoInfo*)e2)->name);
 }
@@ -173,7 +211,7 @@ void NameSort(struct Contact* pc)
 //清空所有联系人
 void ClsContact(struct Contact* pc)
 {
-	if (pc->sz == 0)
+	if (pc->sz == 0)   //判断通讯录里有没有联系人
 	{
 		printf("没有联系人，清除失败！\n");
 	}

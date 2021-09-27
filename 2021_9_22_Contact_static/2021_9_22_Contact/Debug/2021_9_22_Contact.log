@@ -1,7 +1,2 @@
 ﻿  contact.c
-F:\GitHub\bit_learn\2021_9_22_Contact_static\2021_9_22_Contact\contact.c(168,60): warning C4090: “函数”: 不同的“const”限定符
-F:\GitHub\bit_learn\2021_9_22_Contact_static\2021_9_22_Contact\contact.c(168,60): warning C4028: 形参 1 与声明不同
-F:\GitHub\bit_learn\2021_9_22_Contact_static\2021_9_22_Contact\contact.c(168,60): warning C4028: 形参 2 与声明不同
-  test.c
-  正在生成代码...
   2021_9_22_Contact.vcxproj -> F:\GitHub\bit_learn\2021_9_22_Contact_static\Debug\2021_9_22_Contact.exe
