@@ -292,11 +292,13 @@
 struct S
 {
 	int a;
+
 	double b;
 };
 int main()
 {
 	struct S s = { 100,3.14 };
+
 	char str[20] = { 0 };
 	//把格式化的数据转化为一个字符串
 	sprintf(str, "%d %lf", s.a, s.b);  //后面会放上一个\0
@@ -304,6 +306,7 @@ int main()
 	struct S temp = { 0 };
 	//从一个字符串中提取格式化的数据
 	sscanf(str, "%d %lf", &(temp.a), &(temp.b));
+
 	printf("%d %lf\n", temp.a, temp.b);
 
 	return 0;
