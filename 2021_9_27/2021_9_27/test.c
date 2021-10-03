@@ -110,17 +110,23 @@
 #include<stdio.h>
 int main()
 {
-	int n = 10;
+	int n = 3;
 	int i = 0;
+
+	printf("偶数位为：");
 	for (i = 31; i >= 1; i -= 2)
 	{
 		printf("%d ", (n >> i) & 1);
 	}
 	printf("\n");
+
+	printf("奇数位为：");
 	for (i = 30; i >= 0; i -= 2)
 	{
 		printf("%d ", (n >> i) & 1);
 	}
+	printf("\n");
+
 	return 0;
 }
 
